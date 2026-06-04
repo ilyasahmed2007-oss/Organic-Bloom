@@ -1,62 +1,21 @@
-import 'package:flutter/material.dart';
+name: organic_bloom_cosmetic
+description: "Organic Bloom Cosmetic - Offline App"
+publish_to: 'none'
 
-void main() {
-  runApp(const MyApp());
-}
+version: 1.0.0+1
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Organic Bloom Cosmetic',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+environment:
+  sdk: '>=3.0.0 <4.0.0'
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Organic Bloom Cosmetic'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.spa, size: 100, color: Colors.green),
-              const SizedBox(height: 30),
-              const Text(
-                'ویلکم ٹو آرگینک بلوم کاسمیٹک',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'یہ ایپ مکمل آف لائن کام کرے گی\nکوئی انٹرنیٹ، کوئی خریداری نہیں',
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('شروع کریں'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
