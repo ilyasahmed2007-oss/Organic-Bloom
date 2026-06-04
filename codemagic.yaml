@@ -1,11 +1,11 @@
 workflows:
   android-release:
     name: Android Release Build
+    working_directory: form_app
     environment:
       flutter: stable
     scripts:
-      - cd "form_app"
       - flutter pub get
       - flutter build apk --release
     artifacts:
-      - "organic-bloom/form app/build/app/outputs/flutter-apk/app-release.apk"
+      - build/app/outputs/flutter-apk/app-release.apk
