@@ -8,6 +8,7 @@ workflows:
     scripts:
       - flutter pub get
       - sed -i '' 's/gradle-.*-all.zip/gradle-7.6.3-all.zip/g' android/gradle/wrapper/gradle-wrapper.properties
-      - flutter build apk --release
+      - cd android && ./gradlew clean --no-daemon
+      - flutter build apk --release --no-pub
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
