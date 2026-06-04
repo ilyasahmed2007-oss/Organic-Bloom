@@ -1,7 +1,7 @@
 workflows:
   android-release:
     name: Android Release Build
-    working_directory: form_application
+    working_directory: form_app
     environment:
       flutter: stable
       java: 17
