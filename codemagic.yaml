@@ -8,10 +8,8 @@ workflows:
     scripts:
       - flutter pub get
       - sed -i '' 's/gradle-.*-all.zip/gradle-7.6.3-all.zip/g' android/gradle/wrapper/gradle-wrapper.properties
-      - sed -i '' 's/kotlin_version = .*/kotlin_version = "1.8.22"/g' android/build.gradle
-      - sed -i '' 's/languageVersion = .*/languageVersion = "1.8"/g' android/app/build.gradle
-      - sed -i '' 's/apiVersion = .*/apiVersion = "1.8"/g' android/app/build.gradle
+      - rm -rf ~/.gradle/caches
       - flutter clean
-      - flutter build apk --release
+      - flutter build apk --release --verbose
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
