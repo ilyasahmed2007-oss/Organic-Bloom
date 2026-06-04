@@ -1,29 +1,62 @@
-name: form_app
-description: A sample demonstrating different types of forms and best practices
-publish_to: "none"
-version: 1.0.0+1
-resolution: workspace
+import 'package:flutter/material.dart';
 
-environment:
-  sdk: ^3.9.0-0
+void main() {
+  runApp(const MyApp());
+}
 
-dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^1.0.0
-  intl: ^0.20.0
-  http: ^1.0.0
-  json_annotation: any
-  english_words: ^4.0.0
-  go_router: ^16.0.0
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Organic Bloom Cosmetic',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        useMaterial3: true,
+      ),
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
 
-dev_dependencies:
-  analysis_defaults:
-    path: ../analysis_defaults
-  flutter_test:
-    sdk: flutter
-  json_serializable: ^6.2.0
-  build_runner: ^2.1.8
-
-flutter:
-  uses-material-design: true
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Organic Bloom Cosmetic'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.spa, size: 100, color: Colors.green),
+              const SizedBox(height: 30),
+              const Text(
+                'ویلکم ٹو آرگینک بلوم کاسمیٹک',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'یہ ایپ مکمل آف لائن کام کرے گی\nکوئی انٹرنیٹ، کوئی خریداری نہیں',
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('شروع کریں'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
