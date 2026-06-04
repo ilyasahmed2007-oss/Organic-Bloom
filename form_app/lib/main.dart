@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:in_app_purchase/in_app_purchase.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,73 +10,58 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Organic Bloom Cosmetic',
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: const BillingPage(),
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        useMaterial3: true,
+      ),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class BillingPage extends StatefulWidget {
-  const BillingPage({super.key});
-  @override
-  State<BillingPage> createState() => _BillingPageState();
-}
-
-class _BillingPageState extends State<BillingPage> {
-  final InAppPurchase _iap = InAppPurchase.instance;
-  List<ProductDetails> _products = [];
-  bool _available = false;
-
-  final Set<String> _kIds = {
-    'monthly_plan',
-    'quarterly_plan',
-    'yearly_plan'
-  };
-
-  @override
-  void initState() {
-    super.initState();
-    _init();
-  }
-
-  Future<void> _init() async {
-    _available = await _iap.isAvailable();
-    if (!_available) return;
-    final ProductDetailsResponse response = await _iap.queryProductDetails(_kIds);
-    setState(() {
-      _products = response.productDetails;
-    });
-  }
-
-  Future<void> _buy(ProductDetails product) async {
-    final PurchaseParam purchaseParam = PurchaseParam(productDetails: product);
-    _iap.buyNonConsumable(purchaseParam: purchaseParam);
-  }
-
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Organic Bloom Cosmetic')),
-      body: _products.isEmpty
-         ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: _products.length,
-              itemBuilder: (context, index) {
-                final product = _products[index];
-                return Card(
-                  margin: const EdgeInsets.all(10),
-                  child: ListTile(
-                    title: Text(product.title),
-                    subtitle: Text(product.description),
-                    trailing: ElevatedButton(
-                      onPressed: () => _buy(product),
-                      child: Text(product.price),
-                    ),
-                  ),
-                );
-              },
-            ),
+      appBar: AppBar(
+        title: const Text('Organic Bloom Cosmetic'),
+        centerTitle: true,
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.spa, size: 120, color: Colors.green),
+              const SizedBox(height: 30),
+              const Text(
+                'Organic Bloom Cosmetic',
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'خالص قدرتی کاسمیٹک\nمکمل آف لائن ایپ',
+                style: TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                ),
+                onPressed: () {},
+                child: const Text('شروع کریں', style: TextStyle(fontSize: 18)),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
