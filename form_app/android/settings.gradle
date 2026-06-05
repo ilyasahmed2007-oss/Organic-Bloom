@@ -7,6 +7,14 @@ pluginManagement {
         return path
     }()
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+}
+
+gradle.beforeSettings { settings ->
+    def flutterSdkPath = {
+        def properties = new Properties()
+        file("local.properties").withInputStream { properties.load(it) }
+        return properties.getProperty("flutter.sdk")
+    }()
     settings.ext.flutterRoot = flutterSdkPath
 }
 
