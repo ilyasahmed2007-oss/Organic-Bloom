@@ -10,9 +10,9 @@ workflows:
       - rm -rf ~/.gradle/caches
       - flutter clean
       
-      # یہ 3 لائن نئی - Gradle 7.6.3 force کریں گے
+      # Gradle 7.6.3 انسٹال + wrapper بنائیں
       - cd android
-      - ./gradlew wrapper --gradle-version 7.6.3
+      - gradle wrapper --gradle-version 7.6.3
       - cd ..
       
       - flutter build apk --debug --no-shrink
