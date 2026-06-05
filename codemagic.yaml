@@ -9,7 +9,7 @@ workflows:
       - flutter pub get
       - rm -rf ~/.gradle/caches
       - flutter clean
-      - cd android && ./gradlew assembleDebug --no-daemon
-      - cd android && ./gradlew assembleRelease --no-daemon
+      - flutter build apk --debug --no-shrink
+      - flutter build apk --release --no-shrink
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
