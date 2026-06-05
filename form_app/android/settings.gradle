@@ -1,11 +1,4 @@
 pluginManagement {
-    plugins {
-        id 'org.jetbrains.kotlin.android' version '1.8.22' apply false
-        id 'com.android.application' version '7.4.2' apply false
-        id 'dev.flutter.flutter-gradle-plugin' version '1.0.0' apply false
-    }
-}
-pluginManagementt {
     def flutterSdkPath = {
         def properties = new Properties()
         file("local.properties").withInputStream { properties.load(it) }
@@ -37,5 +30,9 @@ plugins {
 }
 
 include ':app'
+
+def localPropertiesFile = new File(rootDir, "local.properties")
+def properties = new Properties()
+localPropertiesFile.withInputStream { properties.load(it) }
 
 rootProject.ext.kotlin_version = '1.8.22'
