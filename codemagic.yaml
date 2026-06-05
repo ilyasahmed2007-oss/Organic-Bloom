@@ -9,6 +9,12 @@ workflows:
       - flutter pub get
       - rm -rf ~/.gradle/caches
       - flutter clean
+      
+      # یہ 3 لائن نئی - Gradle 7.6.3 force کریں گے
+      - cd android
+      - ./gradlew wrapper --gradle-version 7.6.3
+      - cd ..
+      
       - flutter build apk --debug --no-shrink
       - flutter build apk --release --no-shrink
     artifacts:
