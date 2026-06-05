@@ -15,8 +15,6 @@ allprojects {
         google()
         mavenCentral()
     }
-    
-    // یہ لائن روٹ + سب پروجیکٹ دونوں کو 1.8 پر فورس کرے گی
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         kotlinOptions {
             jvmTarget = '1.8'
