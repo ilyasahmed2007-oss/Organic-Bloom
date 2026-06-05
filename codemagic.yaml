@@ -10,6 +10,6 @@ workflows:
       - sed -i '' 's/gradle-.*-all.zip/gradle-7.6.3-all.zip/g' android/gradle/wrapper/gradle-wrapper.properties
       - rm -rf ~/.gradle/caches
       - flutter clean
-      - flutter build apk --release --verbose
+      - cd android && ./gradlew assembleRelease --stacktrace --info
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
