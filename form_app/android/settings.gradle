@@ -7,6 +7,9 @@ pluginManagement {
         return flutterSdkPath
     }()
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+    
+    // یہ 1 لائن ایڈ کریں - یہی مسنگ تھی
+    rootProject.ext.flutterRoot = flutterSdkPath
 }
 
 include ":app"
