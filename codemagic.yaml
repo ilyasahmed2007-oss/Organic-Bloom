@@ -5,12 +5,11 @@ workflows:
     environment:
       flutter: stable
       java: 17
-      GRADLE_VERSION: 7.6.3
     scripts:
       - flutter pub get
       - rm -rf ~/.gradle/caches
       - flutter clean
-      - cd android && ./gradlew assembleDebug --no-daemon --stacktrace
+      - cd android && ./gradlew assembleDebug --no-daemon
       - cd android && ./gradlew assembleRelease --no-daemon
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
