@@ -1,3 +1,4 @@
+
 workflows:
   android-release:
     name: Android Release Build
@@ -5,11 +6,14 @@ workflows:
     environment:
       flutter: stable
       java: 17
+      xcode: latest
     scripts:
       - flutter pub get
       - sed -i '' 's/gradle-.*-all.zip/gradle-7.6.3-all.zip/g' android/gradle/wrapper/gradle-wrapper.properties
+      - sed -i '' 's/kotlin_version = .*/kotlin_version = "1.8.22"/g' android/build.gradle
       - rm -rf ~/.gradle/caches
       - flutter clean
-      - flutter build apk --release --stacktrace --verbose
+      - cd android && chmod +x gradlew
+      - cd android && ./gradlew assembleRelease --stacktrace --info --no-daemon
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
